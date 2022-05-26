@@ -90,11 +90,11 @@ new Vue({   // 인스턴스 생성 시 root component가 됨
 ```
 
 ## 컴포넌트 통신
-뷰 컴포넌트는 각각 고유한 데이터 유효 범위를 갖기 때문에 데이터를 공유하기 위해서 props와 event 속성 이용
+뷰 컴포넌트는 각각 고유한 데이터 유효 범위를 갖기 때문에 데이터를 공유하기 위해서 props와 event 속성 이용  
 ![component-communication 2bb1d838](https://user-images.githubusercontent.com/60397314/170423015-301ed5eb-733d-45f8-98cb-5ca3aba20d59.png)
 
 ### [프롭스](./src/playground/props.html)
-`<app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header>`
+`<app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header>`  
 reactivity가 props에도 반영돼 상위 컴포넌트의 데이터가 바뀌었을 때 props도 함께 변경됨
 
 ### [이벤트](./src/playground/event-emit.html)
@@ -113,3 +113,39 @@ var obj = {
 ```
 ### 같은 컴포넌트 레벨 간 통신 방법
 event를 이용해 상위 컴포넌트로 event 처리 후 props로 원하는 하위 컴포넌트로 전달
+
+## 라우터
+### 뷰 라우터
+
+싱글 페이지 애플리케이션을 구현하거나 페이지간의 이동 기능을 구현할 때 사용하는 뷰 공식 라이브러리
+
+---
+페이지 url이 변경됐을 때 특정 url에 따라 뿌려지는 컴포넌트를 `router-view` 태그로 정의할 수 있음  
+이는 뷰 인스턴스의 라우터 인스턴스를 연결해야만 사용 가능  
+path에 정의한 url로 이동했을 때 component를 router-view 태그에 표현  
+```javascript
+<div id="app">
+  <router-view></router-view>
+</div>
+```
+
+---
+페이지 이동 시 사용자는 url을 다 쳐서 이동하지 않고 간단한 키보드나 마우스로 이동  
+`router-link` 태그는 라우터에서 페이지 이동을 하기 위한 링크 태그. 최종적으로 앵커 태그(일반적으로 링크를 이동할 때 사용)로 변환되어 화면에 나타남
+```javascript
+<router-link to="이동할 URL">Login</router-link>    // <a href="/login">Login</a> 와 동일
+```
+
+---
+`history`: URL의 해쉬 값(#) 제거 속성 (#/login -> /login)  
+`routes`: 페이지의 라우팅(어떤 url로 이동했을 때 어떤 페이지가 뿌려지는지) 정보 배열
+```javascript
+routes: [
+    {
+        path: '/login',    // 페이지의 url
+        component: LoginComponent   // 해당 url에서 표시될 컴포넌트
+    }, // 첫 번째 페이지에 대한 정보
+    {}  // 두 번째 페이지에 대한 정보
+        // 페이지의 개수만큼 객체 필요
+]
+```
