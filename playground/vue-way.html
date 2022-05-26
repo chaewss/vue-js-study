@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+    var div = document.querySelector('#app');
+    var viewModel = {};
+    (function () {  // 즉시 실행 함수
+        // init과 render가 app logic에 노출되지 않게 해당 코드를 또 다른 scope에 넣어줌
+        // 일반적으로 오픈 소스 라이브러리들이 이런식으로 변수의 유효 범위 관리
+
+        function init() {
+            Object.defineProperty(viewModel, 'str', {
+                // 속성에 접근했을 때의 동작을 정의
+                get: function () {
+                    console.log('접근')
+                },
+                // 속성에 값을 할당했을 때의 동작을 정의
+                set: function (newValue) {
+                    console.log('할당', newValue)
+                    render(newValue);
+                }
+            });
+        }
+
+        function render(value) {
+            div.innerHTML = value;
+        }
+
+        init();
+    })();
+
+</script>
+</body>
+</html>
