@@ -111,11 +111,11 @@ var obj = {
   }
 }
 ```
-### 같은 컴포넌트 레벨 간 통신 방법
+### [같은 컴포넌트 레벨 간 통신 방법](./src/playground/component-same-level.html)
 event를 이용해 상위 컴포넌트로 event 처리 후 props로 원하는 하위 컴포넌트로 전달
 
 ## 라우터
-### 뷰 라우터
+### [뷰 라우터](./src/playground/router.html)
 
 싱글 페이지 애플리케이션을 구현하거나 페이지간의 이동 기능을 구현할 때 사용하는 뷰 공식 라이브러리
 
