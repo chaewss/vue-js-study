@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    // vue 에서 제공하는 api(기능)와 속성
+    var vm = new Vue({  // 생성자 내부에는 객체가 들어감 (객체 표기법으로 객체가 정의되어 있음)
+        el: '#app',  // body 태그에서 id가 app 인 태그를 찾아 인스턴스를 붙임. -> vue의 기능과 속성이 유효해짐
+        data: {
+            message: 'hi'
+        }
+    });
+</script>
+</body>
+</html>
