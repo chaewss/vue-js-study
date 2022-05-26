@@ -1,7 +1,7 @@
 # 🐯 Vue.js 공부
 
 ## Reactivity
-### Object.defineProperty
+### [Object.defineProperty](./src/playground/vue-way.html)
 ***
 객체에 새로운 속성을 직접 정의하거나 이미 존재하는 속성을 수정한 후, 해당 객체를 반환
 ```javascript
@@ -53,7 +53,7 @@ var viewModel = {};
 
 ## 인스턴스 & 컴포넌트
 
-### 인스턴스
+### [인스턴스](./src/playground/instance.html)
 ***
 ```javascript
 // vue 에서 제공하는 api(기능)와 속성
@@ -65,7 +65,7 @@ var vm = new Vue({  // 생성자 내부에는 객체가 들어감 (객체 표기
 });
 ```
 
-### 컴포넌트
+### [컴포넌트](./src/playground/component.html)
 ***
 - 전역 컴포넌트   
   : 인스턴스를 생성하지 않아도 기본적으로 모든 인스턴스에 등록이 되어있음. 대부분 플러그인이나 라이브러리 형태로 전역으로 사용해야 되는 컴포넌트를 사용.
@@ -93,11 +93,11 @@ new Vue({   // 인스턴스 생성 시 root component가 됨
 뷰 컴포넌트는 각각 고유한 데이터 유효 범위를 갖기 때문에 데이터를 공유하기 위해서 props와 event 속성 이용
 ![component-communication 2bb1d838](https://user-images.githubusercontent.com/60397314/170423015-301ed5eb-733d-45f8-98cb-5ca3aba20d59.png)
 
-### 프롭스
+### [프롭스](./src/playground/props.html)
 `<app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header>`
 reactivity가 props에도 반영돼 상위 컴포넌트의 데이터가 바뀌었을 때 props도 함께 변경됨
 
-### 이벤트
+### [이벤트](./src/playground/event-emit.html)
 `<app-header v-on:하위 컴포넌트에서 발생한 이벤트 이름="상위 컴포넌트의 메서드 이름"></app-header>`
 
 ### this
