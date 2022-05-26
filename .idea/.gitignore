@@ -9,3 +9,6 @@
 
 # no .xml files
 *.xml
+
+# no .xml files
+.idea
