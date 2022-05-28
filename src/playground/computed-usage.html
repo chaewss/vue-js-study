@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .warning {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <p v-bind:class="errorTextColor">Hello</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isError: false  // boolean 값에 따라 class name을 삽입 여부 달라짐
+        },
+        // computed 속성을 class binding이나 기본적인 binding에 엮을 수 있음
+        computed: {
+            errorTextColor: function () {
+                return this.isError ? 'warning' : null;
+            }
+        }
+    })
+</script>
+</body>
+</html>

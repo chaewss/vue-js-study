@@ -1,4 +1,4 @@
-# 🐯 Vue.js 공부
+# 🐯 [Vue.js](https://vuejs.org/) 공부
 
 ## Reactivity
 ### [Object.defineProperty](./src/playground/vue-way.html)
@@ -149,3 +149,82 @@ routes: [
         // 페이지의 개수만큼 객체 필요
 ]
 ```
+
+## [액시오스](./src/playground/axios.html)
+_jsonplaceholder: 자바스크립트로 API를 요청할 때 테스트 해볼 수 있는 사이트_
+
+뷰에서 권고하는 Promise(자바 스크립트의 비동기 처리 패턴) 기반의 HTTP 통신 라이브러리  
+
+자바 스크립트의 비동기 처리 패턴
+1. callback
+2. promise
+3. promise + generator
+4. async & await
+
+### axios.get() 내부 this
+axios.get() 호출 전에서의 this는 기본적인 instance나 component를 바라보고 함수 내부의 this는 비동기 처리에 의해 자연스럽게 실행 context가 바뀌면서 this에 대한 내용이 바뀜
+```javascript
+getData: function () {
+  this  // here !!
+  axios.get('https://jsonplaceholder.typicode.com/users/')
+  .then(function (response) {
+    this.users = response.data; // here !!
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+```
+
+## 뷰의 템플릿 문법
+뷰로 화면을 조작하는 속성과 기능
+
+### [데이터 바인딩](./src/playground/data-binding.html)
+뷰 인스턴스에서 정의한 속성들을 화면에 표시하는 방법.  
+가장 기본적인 데이터 바인딩 방식 콧수염 괄호(Mustache Tag)를 이용해 뷰 인스턴스에서 정의한 데이터 및 로직들을 HTML로 변환해 화면에 나타냄
+```html
+<div>{{ message }}</div>
+```
+```javascript
+new Vue({
+  data: {
+      message: 'Hello Vue.js'
+  }
+})
+```
+
+### [디렉티브](./src/playground/directive.html)
+뷰로 화면의 요소를 더 쉽게 조작하기 위한 문법들을 모아 디렉티브 형태로 제공  
+html 태그에서 일반적인 id 혹은 class인 표준 속성을 제외하고 `v-` 로 붙는 속성들을 모두 뷰 디렉티브라고 함  
+아래와 같이 특정 속성 값에 따라 화면의 영역을 표시하거나 표시하지 않을 수 있음
+```html
+<div>
+  Hello <span v-if="show">Vue.js</span>
+</div>
+```
+```javascript
+new Vue({
+  data: {
+      show: false
+  }
+})
+```
+- `v-if`와 `v-show` 차이점 
+  - show는 css 스타일에서 `display: none` 상태로 육안상으로만 보이지 않게 하고 정보는 남아있음
+
+### [이벤트 처리](./src/playground/methods.html)
+`v-on: click="메서드 이름"`을 붙일 경우 버튼을 클릭했을 때 스크립트의 뷰 인스턴스에 정의한 메서드가 실행 됨
+`v-on:keyup.enter`: event modifier. 엔터가 눌렸을 때만 실행
+
+### 고급 템플릿 기법
+- [watch](./src/playground/watch.html)
+  - 기본적으로 데이터를 대상으로 넣을 수 있고 데이터의 변화에 따라 특정 로직을 수행할 수 있는 뷰의 속성
+- [computed](./src/playground/data-binding.html)
+  - 데이터의 연산을 정의하는 영역
+  - [computed 속성을 class binding이나 기본적인 binding에 엮을 수 있음](./src/playground/computed-usage.html)
+  - 장점: data 속성 값이 변경되면 전체 값 다시 한번 계산, 캐싱
+  - methods VS computed
+    - methods는 호출할 때만 해당 로직 수행, computed는 대상 데이터 값이 변하면 자동으로 수행
+- [watch vs computed](./src/playground/watch-vs-computed.html)
+  - watch는 실제로 무거운 로직(ex. 매번 실행하기 부담스러움), 특히 데이터 요청에 적합
+  - computed는 단순한 값에 대한 계산, 특히 단순 text 입력을 받아 validation 값을 계산할 때 많이 사용
