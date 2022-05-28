@@ -213,7 +213,7 @@ new Vue({
   - show는 css 스타일에서 `display: none` 상태로 육안상으로만 보이지 않게 하고 정보는 남아있음
 
 ### [이벤트 처리](./src/playground/methods.html)
-`v-on: click="메서드 이름"`을 붙일 경우 버튼을 클릭했을 때 스크립트의 뷰 인스턴스에 정의한 메서드가 실행 됨
+`v-on: click="메서드 이름"`을 붙일 경우 버튼을 클릭했을 때 스크립트의 뷰 인스턴스에 정의한 메서드가 실행 됨  
 `v-on:keyup.enter`: event modifier. 엔터가 눌렸을 때만 실행
 
 ### 고급 템플릿 기법
